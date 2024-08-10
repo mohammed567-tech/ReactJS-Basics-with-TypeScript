@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import ColorProduct from "./ColorProduct";
 import ContentProduct from "./ContentProduct";
 // import { TextSlicer } from "./functions/Functions";
 import Image from "./Image";
 import Button from "./ui/Button";
+// import Modal from "./ui/Modal";
 
 interface IProps {}
 
