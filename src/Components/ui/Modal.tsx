@@ -9,13 +9,6 @@ interface Iprops {
 const Modal = ({ isOpen, closeModal, title, children }: Iprops) => {
   return (
     <>
-      {/* <Button
-        onClick={open}
-        className="rounded-md bg-black py-2 px-4 text-sm font-medium text-white focus:outline-none data-[hover]:bg-black/30 data-[focus]:outline-1 data-[focus]:outline-white"
-      >
-        Open dialog
-      </Button> */}
-
       <Dialog
         open={isOpen}
         as="div"
