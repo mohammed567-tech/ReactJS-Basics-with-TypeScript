@@ -1,18 +1,31 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import "./App.css";
 import ProductCard from "./Components/ProductCard";
 import Modal from "./Components/ui/Modal";
 import Button from "./Components/ui/Button";
 import { FormInputsList } from "./data/data";
 import Input from "./Components/ui/Input";
+import { Iproduct } from "./Components/Interfaces";
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
+  const [product, setProduct] = useState<Iproduct>({
+    title: "",
+    description: "",
+    imageURL: "",
+    price: "",
+    colors: [],
+    category: { name: "", imageUrl: "" },
+  });
 
   function open() {
     setIsOpen(true);
   }
-
+  const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    const { value, name } = e.target;
+    setProduct({ ...product, [name]: value });
+  };
+  // console.log(product);/
   function closeModal() {
     setIsOpen(false);
   }
@@ -34,7 +47,13 @@ function App() {
             {FormInputsList.map((input) => (
               <div className="flex flex-col gap-2">
                 <label htmlFor={input.id}>{input.label}</label>
-                <Input type="text" id={input.id} name={input.name} />
+                <Input
+                  type="text"
+                  id={input.id}
+                  name={input.name}
+                  value={product[input.name]}
+                  onChange={onChangeHandler}
+                />
               </div>
             ))}
 
