@@ -1,14 +1,18 @@
 // import { useEffect, useState } from "react";
-import ColorProduct from "./ColorProduct";
+
 import ContentProduct from "./ContentProduct";
 // import { TextSlicer } from "./functions/Functions";
 import Image from "./Image";
+import { Iproduct } from "./Interfaces";
 import Button from "./ui/Button";
+import CircleColor from "./ui/CircleColor";
 // import Modal from "./ui/Modal";
 
-interface IProps {}
+interface IProps {
+  product: Iproduct;
+}
 
-const ProductCard = ({}: IProps) => {
+const ProductCard = ({ product }: IProps) => {
   //   const [products, setProducts] = useState([]);
   //   useEffect(() => {
   //     fetch("https://fakestoreapi.com/products")
@@ -19,21 +23,22 @@ const ProductCard = ({}: IProps) => {
     <div className="flex flex-col gap-5">
       {/* IMAGE */}
       <Image
-        imageSrc="https://placehold.co/1200x600"
+        imageSrc={product.imageURL}
         alt="producr image"
         className="rounded-xl "
       />
       {/* CONTENT */}
-      <ContentProduct />
+      <ContentProduct product={product} />
       {/* <p>{TextSlicer(txt)}</p> */}
       {/* COLOR */}
       <div className="colorProduct flex gap-3">
-        <ColorProduct Color="bg-indigo-500" />
-        <ColorProduct Color="bg-red-500" />
+        {product.colors.map((color) => (
+          <CircleColor Color={color} key={color} />
+        ))}
       </div>
       {/* PRICE */}
       <div className="price flex justify-between items-center ">
-        <span>500$</span>
+        <span>{product.price}</span>
         <Image
           imageSrc="https://placehold.co/30x30"
           alt="producr image"

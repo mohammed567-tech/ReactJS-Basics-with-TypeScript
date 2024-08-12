@@ -1,18 +1,18 @@
 import { TextSlicer } from "./functions/Functions";
+import { Iproduct } from "./Interfaces";
 // import { Iproduct } from "./Interfaces";
 
-interface IProps {}
+interface IProps {
+  product: Iproduct;
+}
 
-const ContentProduct = ({}: IProps) => {
+const ContentProduct = ({ product }: IProps) => {
   //   console.log(products);
+  const productDescription = product.description;
   return (
     <div className="flex flex-col gap-2 text-start">
-      <span className="text-2xl">title</span>
-      <span>
-        {TextSlicer(
-          " Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nostrum, nemomollitia? Saepe minima adipisci ullam aut quia, magni reiciendisdoloremque veritatis architecto quasi, quidem delectus recusandae eaquefugiat, beatae repudiandae."
-        )}
-      </span>
+      <span className="text-2xl">{product.title}</span>
+      <span>{TextSlicer(productDescription)}</span>
     </div>
   );
 };

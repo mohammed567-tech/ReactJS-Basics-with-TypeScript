@@ -1,5 +1,70 @@
-import { IformInput } from "../Components/Interfaces";
-
+import { IformInput, Iproduct } from "../Components/Interfaces";
+import { v4 as uuid } from "uuid";
+export const Products: Iproduct[] = [
+  {
+    id: uuid(),
+    title: "car11",
+    description: "car car car car1 ",
+    imageURL: "https://placehold.co/1200x600",
+    price: "40",
+    colors: [],
+    category: { name: "car", imageUrl: "https://placehold.co/1200x600" },
+  },
+  {
+    id: uuid(),
+    title: "car2",
+    description: "car car car car2 ",
+    imageURL: "https://placehold.co/1200x600",
+    price: "40",
+    colors: [],
+    category: { name: "car", imageUrl: "https://placehold.co/1200x600" },
+  },
+  {
+    id: uuid(),
+    title: "car3",
+    description: "car car car car3 ",
+    imageURL: "https://placehold.co/1200x600",
+    price: "40",
+    colors: [],
+    category: { name: "car", imageUrl: "https://placehold.co/1200x600" },
+  },
+  {
+    id: uuid(),
+    title: "car4",
+    description: "car car car car4 ",
+    imageURL: "https://placehold.co/1200x600",
+    price: "40",
+    colors: [],
+    category: { name: "car", imageUrl: "https://placehold.co/1200x600" },
+  },
+  {
+    id: uuid(),
+    title: "car5",
+    description: "car car car car5 ",
+    imageURL: "https://placehold.co/1200x600",
+    price: "40",
+    colors: [],
+    category: { name: "car", imageUrl: "https://placehold.co/1200x600" },
+  },
+  {
+    id: uuid(),
+    title: "car6",
+    description: "car car car car6 ",
+    imageURL: "https://placehold.co/1200x600",
+    price: "40",
+    colors: [],
+    category: { name: "car", imageUrl: "https://placehold.co/1200x600" },
+  },
+  {
+    id: uuid(),
+    title: "car7",
+    description: "car car car car 7",
+    imageURL: "https://placehold.co/1200x600",
+    price: "40",
+    colors: [],
+    category: { name: "car", imageUrl: "https://placehold.co/1200x600" },
+  },
+];
 export const FormInputsList: IformInput[] = [
   {
     id: "title",
@@ -26,4 +91,20 @@ export const FormInputsList: IformInput[] = [
     label: "Product Price",
     type: "text",
   },
+];
+export const Colors: string[] = [
+  "#6D5FA1",
+  "#7F7CF0",
+  "#7D0764",
+  "#513D78",
+  "#320C9F",
+  "#326496",
+  "#A146BE",
+  "#71A2D2",
+  "#0D0C25",
+  "#9A88CA",
+  "#C6B0F6",
+  "#048E52",
+  "#40B7F7",
+  "#5B9E67",
 ];
