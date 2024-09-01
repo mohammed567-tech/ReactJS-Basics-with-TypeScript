@@ -3,13 +3,15 @@ export const productValidation = (product: {
   description: string;
   imageURL: string;
   price: string;
+  colors: string[];
 }) => {
   const errors: {
     title: string;
     description: string;
     imageURL: string;
     price: string;
-  } = { title: "", description: "", imageURL: "", price: "" };
+    color: string;
+  } = { title: "", description: "", imageURL: "", price: "", color: "" };
   const validUrlImage = /^(ftp|http|https):\/\/[^ "]+$/.test(product.imageURL);
   if (
     !product.title.trim() ||
@@ -32,6 +34,8 @@ export const productValidation = (product: {
   if (!product.price.trim() || isNaN(Number(product.price))) {
     errors.price = "this is not a number";
   }
-
+  if (!product.colors || product.colors.length === 0) {
+    errors.color = "Please select at least one color ";
+  }
   return errors;
 };

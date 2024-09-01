@@ -1,4 +1,4 @@
-import { IformInput, Iproduct } from "../Components/Interfaces";
+import { Icategory, IformInput, Iproduct } from "../Components/Interfaces";
 import { v4 as uuid } from "uuid";
 export const Products: Iproduct[] = [
   {
@@ -7,8 +7,8 @@ export const Products: Iproduct[] = [
     description: "car car car car1 ",
     imageURL: "https://placehold.co/1200x600",
     price: "40",
-    colors: [],
-    category: { name: "car", imageUrl: "https://placehold.co/1200x600" },
+    colors: ["#6D5FA1", "#7F7CF0", "#7D0764"],
+    category: { name: "car", imageURL: "https://placehold.co/30x30" },
   },
   {
     id: uuid(),
@@ -16,8 +16,8 @@ export const Products: Iproduct[] = [
     description: "car car car car2 ",
     imageURL: "https://placehold.co/1200x600",
     price: "40",
-    colors: [],
-    category: { name: "car", imageUrl: "https://placehold.co/1200x600" },
+    colors: ["#6D5FA1", "#7F7CF0", "#7D0764"],
+    category: { name: "car", imageURL: "https://placehold.co/30x30" },
   },
   {
     id: uuid(),
@@ -25,8 +25,8 @@ export const Products: Iproduct[] = [
     description: "car car car car3 ",
     imageURL: "https://placehold.co/1200x600",
     price: "40",
-    colors: [],
-    category: { name: "car", imageUrl: "https://placehold.co/1200x600" },
+    colors: ["#6D5FA1", "#7F7CF0", "#7D0764"],
+    category: { name: "car", imageURL: "https://placehold.co/30x30" },
   },
   {
     id: uuid(),
@@ -34,8 +34,8 @@ export const Products: Iproduct[] = [
     description: "car car car car4 ",
     imageURL: "https://placehold.co/1200x600",
     price: "40",
-    colors: [],
-    category: { name: "car", imageUrl: "https://placehold.co/1200x600" },
+    colors: ["#6D5FA1", "#7F7CF0", "#7D0764"],
+    category: { name: "car", imageURL: "https://placehold.co/30x30" },
   },
   {
     id: uuid(),
@@ -43,8 +43,8 @@ export const Products: Iproduct[] = [
     description: "car car car car5 ",
     imageURL: "https://placehold.co/1200x600",
     price: "40",
-    colors: [],
-    category: { name: "car", imageUrl: "https://placehold.co/1200x600" },
+    colors: ["#6D5FA1", "#7F7CF0", "#7D0764"],
+    category: { name: "car", imageURL: "https://placehold.co/30x30" },
   },
   {
     id: uuid(),
@@ -52,8 +52,8 @@ export const Products: Iproduct[] = [
     description: "car car car car6 ",
     imageURL: "https://placehold.co/1200x600",
     price: "40",
-    colors: [],
-    category: { name: "car", imageUrl: "https://placehold.co/1200x600" },
+    colors: ["#6D5FA1", "#7F7CF0", "#7D0764"],
+    category: { name: "car", imageURL: "https://placehold.co/30x30" },
   },
   {
     id: uuid(),
@@ -61,8 +61,8 @@ export const Products: Iproduct[] = [
     description: "car car car car 7",
     imageURL: "https://placehold.co/1200x600",
     price: "40",
-    colors: [],
-    category: { name: "car", imageUrl: "https://placehold.co/1200x600" },
+    colors: ["#6D5FA1", "#7F7CF0", "#7D0764"],
+    category: { name: "car", imageURL: "https://placehold.co/30x30" },
   },
 ];
 export const FormInputsList: IformInput[] = [
@@ -107,4 +107,31 @@ export const Colors: string[] = [
   "#048E52",
   "#40B7F7",
   "#5B9E67",
+];
+export const Category: Icategory[] = [
+  {
+    id: uuid(),
+    name: "car",
+    imageURL: "https://picsum.photos/id/1/30/30",
+  },
+  {
+    id: uuid(),
+    name: "machine",
+    imageURL: "https://picsum.photos/id/2/30/30",
+  },
+  {
+    id: uuid(),
+    name: "coffe",
+    imageURL: "https://picsum.photos/id/3/30/30",
+  },
+  {
+    id: uuid(),
+    name: "motsycle",
+    imageURL: "https://picsum.photos/id/4/30/30",
+  },
+  {
+    id: uuid(),
+    name: "t-shirt",
+    imageURL: "https://picsum.photos/id/5/30/30",
+  },
 ];

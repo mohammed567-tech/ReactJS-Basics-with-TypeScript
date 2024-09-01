@@ -5,7 +5,7 @@ export interface Iproduct {
   imageURL: string;
   price: string;
   colors: string[];
-  category: { name: string; imageUrl: string };
+  category: { name: string; imageURL: string };
 }
 
 export interface IformInput {
@@ -13,4 +13,9 @@ export interface IformInput {
   name: "title" | "description" | "imageURL" | "price";
   label: string;
   type: string;
+}
+export interface Icategory {
+  id: string;
+  name: string;
+  imageURL: string;
 }

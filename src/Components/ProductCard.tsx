@@ -10,9 +10,24 @@ import CircleColor from "./ui/CircleColor";
 
 interface IProps {
   product: Iproduct;
+  setProductToEdit: (product: Iproduct) => void;
+  openEditModal: () => void;
+  setProductToEditIndex: (index: number) => void;
+  index: number;
 }
 
-const ProductCard = ({ product }: IProps) => {
+const ProductCard = ({
+  product,
+  setProductToEdit,
+  openEditModal,
+  setProductToEditIndex,
+  index,
+}: IProps) => {
+  const onEdit = () => {
+    setProductToEdit(product);
+    openEditModal();
+    setProductToEditIndex(index);
+  };
   //   const [products, setProducts] = useState([]);
   //   useEffect(() => {
   //     fetch("https://fakestoreapi.com/products")
@@ -20,7 +35,7 @@ const ProductCard = ({ product }: IProps) => {
   //       .then((data) => setProducts(data));
   //   }, []);
   return (
-    <div className="flex flex-col gap-5">
+    <div className="flex flex-col gap-5 bg-white/50 p-2 rounded-lg shadow-md">
       {/* IMAGE */}
       <Image
         imageSrc={product.imageURL}
@@ -38,16 +53,18 @@ const ProductCard = ({ product }: IProps) => {
       </div>
       {/* PRICE */}
       <div className="price flex justify-between items-center ">
-        <span>{product.price}</span>
+        <span>{product.price} $</span>
         <Image
-          imageSrc="https://placehold.co/30x30"
+          imageSrc={product.category.imageURL}
           alt="producr image"
           className="rounded-full items-center "
         />
       </div>
       {/* BUTTONS */}
       <div className="flex gap-2 ">
-        <Button className=" bg-indigo-500 ">Edit</Button>
+        <Button className=" bg-indigo-500 " onClick={onEdit}>
+          Edit
+        </Button>
         <Button className=" bg-red-500">Cancel</Button>
       </div>
     </div>
