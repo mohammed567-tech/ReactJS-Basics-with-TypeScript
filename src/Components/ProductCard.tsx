@@ -1,12 +1,9 @@
-// import { useEffect, useState } from "react";
-
 import ContentProduct from "./ContentProduct";
-// import { TextSlicer } from "./functions/Functions";
+
 import Image from "./Image";
 import { Iproduct } from "./Interfaces";
 import Button from "./ui/Button";
 import CircleColor from "./ui/CircleColor";
-// import Modal from "./ui/Modal";
 
 interface IProps {
   product: Iproduct;
@@ -14,6 +11,7 @@ interface IProps {
   openEditModal: () => void;
   setProductToEditIndex: (index: number) => void;
   index: number;
+  openRemoveModal: () => void;
 }
 
 const ProductCard = ({
@@ -22,18 +20,18 @@ const ProductCard = ({
   openEditModal,
   setProductToEditIndex,
   index,
+  openRemoveModal,
 }: IProps) => {
   const onEdit = () => {
     setProductToEdit(product);
     openEditModal();
     setProductToEditIndex(index);
   };
-  //   const [products, setProducts] = useState([]);
-  //   useEffect(() => {
-  //     fetch("https://fakestoreapi.com/products")
-  //       .then((res) => res.json())
-  //       .then((data) => setProducts(data));
-  //   }, []);
+  const onRmove = () => {
+    setProductToEdit(product);
+    openRemoveModal();
+  };
+
   return (
     <div className="flex flex-col gap-5 bg-white/50 p-2 rounded-lg shadow-md">
       {/* IMAGE */}
@@ -44,7 +42,6 @@ const ProductCard = ({
       />
       {/* CONTENT */}
       <ContentProduct product={product} />
-      {/* <p>{TextSlicer(txt)}</p> */}
       {/* COLOR */}
       <div className="colorProduct flex gap-3">
         {product.colors.map((color) => (
@@ -62,10 +59,12 @@ const ProductCard = ({
       </div>
       {/* BUTTONS */}
       <div className="flex gap-2 ">
-        <Button className=" bg-indigo-500 " onClick={onEdit}>
+        <Button className=" bg-indigo-500 text-white " onClick={onEdit}>
           Edit
         </Button>
-        <Button className=" bg-red-500">Cancel</Button>
+        <Button className=" bg-red-500 text-white" onClick={onRmove}>
+          Remove
+        </Button>
       </div>
     </div>
   );

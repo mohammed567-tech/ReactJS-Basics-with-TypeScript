@@ -32,6 +32,7 @@ function App() {
   const [productList, setProductList] = useState<Iproduct[]>(Products);
   const [isOpen, setIsOpen] = useState(false);
   const [isEditOpen, setEditIsOpen] = useState(false);
+  const [isRemoveOpen, setRemoveIsOpen] = useState(false);
   const [product, setProduct] = useState<Iproduct>(defualtProductObj);
   const [productToEdit, setProductToEdit] =
     useState<Iproduct>(defualtProductObj);
@@ -62,6 +63,12 @@ function App() {
   const closeEditModal = () => {
     setEditIsOpen(false);
   };
+  const openRemoveModal = () => {
+    setRemoveIsOpen(true);
+  };
+  const closeRemoveModal = () => {
+    setRemoveIsOpen(false);
+  };
   const onCancel = () => {
     closeModal();
     setProduct(defualtProductObj);
@@ -69,8 +76,6 @@ function App() {
   };
   const onCancelEdit = () => {
     closeEditModal();
-    // setProduct(defualtProductObj);
-    // setTempColor([]);
   };
 
   const onSubmitHandler = (event: FormEvent<HTMLFormElement>): void => {
@@ -85,7 +90,6 @@ function App() {
     const hasErrMsg =
       Object.values(errors).some((value) => value === "") &&
       Object.values(errors).every((value) => value === "");
-    // console.log(hasErrMsg);
 
     if (!hasErrMsg) {
       serErrors(errors);
@@ -100,79 +104,6 @@ function App() {
     closeModal();
     setTempColor([]);
   };
-  // const onSubmitEditHandler = (event: FormEvent<HTMLFormElement>): void => {
-  //   event.preventDefault();
-  //   const { title, description, imageURL, price } = productToEdit;
-  //   console.log("Editing Product:", productToEdit);
-  //   const errors = productValidation({
-  //     title: title,
-  //     description: description,
-  //     imageURL: imageURL,
-  //     price: price,
-  //     colors: tempColor,
-  //   });
-  //   console.log("Validation Errors:", errors);
-  //   const hasErrMsg = Object.values(errors).some((value) => value !== "");
-
-  //   if (hasErrMsg) {
-  //     serErrors(errors);
-  //     return;
-  //   }
-  //   console.log("No Errors, proceeding to update product.");
-  //   // console.log(productList); // This will execute if there are no errors
-
-  //   const UpdateProduct = [...productList];
-  //   UpdateProduct[productToEditIndex] = productToEdit;
-  //   setProductList(UpdateProduct);
-
-  //   console.log("Updated Product List:", UpdateProduct);
-  //   setProductToEdit(defualtProductObj);
-
-  //   onCancelEdit();
-  //   setTempColor([]);
-  // };
-  // const onSubmitEditHandler1 = (event: FormEvent<HTMLFormElement>): void => {
-  //   event.preventDefault();
-  //   const { title, description, imageURL, price } = productToEdit;
-
-  //   // Log the current product to edit
-  //   console.log("Editing Product:", productToEdit);
-
-  //   const errors = productValidation({
-  //     title: title,
-  //     description: description,
-  //     imageURL: imageURL,
-  //     price: price,
-  //     colors: tempColor,
-  //   });
-
-  //   // Log validation errors
-  //   console.log("Validation Errors:", errors);
-
-  //   const hasErrMsg = Object.values(errors).some((value) => value !== "");
-
-  //   if (hasErrMsg) {
-  //     serErrors(errors);
-  //     console.log("Errors found, edit operation aborted.");
-  //     return;
-  //   }
-
-  //   console.log("No Errors, proceeding to update product.");
-
-  //   const UpdateProduct = [...productList];
-  //   UpdateProduct[productToEditIndex] = {
-  //     ...productToEdit,
-  //     colors: tempColor.concat(productToEdit.colors),
-  //   };
-  //   setProductList(UpdateProduct);
-
-  //   console.log("Updated Product List:", UpdateProduct);
-
-  //   setProductToEdit(defualtProductObj);
-
-  //   onCancelEdit();
-  //   setTempColor([]);
-  // };
   const onSubmitEditHandler = (event: FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
     const { title, description, imageURL, price } = productToEdit;
@@ -227,6 +158,7 @@ function App() {
       product={product}
       setProductToEdit={setProductToEdit}
       openEditModal={openEditModal}
+      openRemoveModal={openRemoveModal}
     />
   ));
   const renderProductEdit = (id: string, label: string, name: TproductName) => {
@@ -244,7 +176,16 @@ function App() {
       </div>
     );
   };
-  // console.log(productToEdit);
+  const handleRemveItem = () => {
+    console.log("Product to remove:", productToEdit);
+    const filtered = productList.filter(
+      (product) => product.id !== productToEdit.id
+    );
+    console.log("Filtered products:", filtered);
+
+    setProductList(filtered);
+    closeRemoveModal();
+  };
   return (
     <>
       <div className="text-center  space-y-4">
@@ -255,6 +196,7 @@ function App() {
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {renderProductist}
         </div>
+        {/* Buil New Product  */}
         <Modal isOpen={isOpen} closeModal={closeModal} title="Add New Product">
           <form className="space-y-3 " onSubmit={onSubmitHandler}>
             {FormInputsList.map((input) => (
@@ -308,8 +250,8 @@ function App() {
               setSelected={setSelectedCategory}
             />
             <div className="flex  gap-2 ">
-              <Button className={"bg-indigo-500"}>submit</Button>
-              <Button className={"bg-gray-500 "} onClick={onCancel}>
+              <Button className={"bg-indigo-500 text-white"}>submit</Button>
+              <Button className={"bg-gray-500 text-white"} onClick={onCancel}>
                 Close
               </Button>
             </div>
@@ -336,18 +278,6 @@ function App() {
                   <CircleColor
                     Color={color}
                     key={color}
-                    // onClick={() => {
-                    //   if (
-                    //     tempColor.concat(productToEdit.colors).includes(color)
-                    //   ) {
-                    //     setTempColor((prev) =>
-                    //       prev.filter((item) => item !== color)
-                    //     );
-                    //     return;
-                    //   }
-                    //   setTempColor((prev) => [...prev, color]);
-                    //   serErrors((prevErrors) => ({ ...prevErrors, color: "" }));
-                    // }}
                     onClick={() => {
                       const isColorInTemp = tempColor.includes(color);
                       const isColorInProduct =
@@ -394,12 +324,41 @@ function App() {
               }
             />
             <div className="flex  gap-2 ">
-              <Button className={"bg-indigo-500"}>submit</Button>
-              <Button className={"bg-gray-500 "} onClick={onCancelEdit}>
+              <Button className={"bg-indigo-500 text-white"}>submit</Button>
+              <Button
+                className={"bg-gray-500  text-white"}
+                onClick={onCancelEdit}
+              >
                 Close
               </Button>
             </div>
           </form>
+        </Modal>
+        {/* Remove btn Modal */}
+        <Modal
+          isOpen={isRemoveOpen}
+          closeModal={closeRemoveModal}
+          title="Remove Item"
+        >
+          <div>
+            <div className="p-3">
+              <p>Do u Want To Remove </p>
+            </div>
+            <div className="flex  gap-2 ">
+              <Button
+                className={"bg-red-500 text-white"}
+                onClick={() => handleRemveItem()}
+              >
+                Remove
+              </Button>
+              <Button
+                className={"bg-gray-300  text-black"}
+                onClick={closeRemoveModal}
+              >
+                Cancel
+              </Button>
+            </div>
+          </div>
         </Modal>
       </div>
     </>
